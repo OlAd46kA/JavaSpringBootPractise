@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your tasks</title>
+</head>
+<body>
+<form action="/tasks" method="post">
+    <input type="text" name="text">
+    <button type="submit">create</button>
+</form>
+<div th:each="task : ${tasks}" style="display: flex; flex-direction: column">
+    <div style="margin-bottom: 10px; display: flex; flex-direction: row; align-items: center">
+        <p th:text="${task.text}" style="margin-right: 10px;"></p>
+        <form action="/tasks/delete" method="post" style="display:inline;">
+            <input type="hidden" name="taskId" th:value="${task.id}" />
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
